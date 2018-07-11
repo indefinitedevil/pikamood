@@ -30,7 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Html::img('https://fontmeme.com/permalink/180711/1cc45d88f009f7037b99cfe5aebed1ee.png', ['alt' => Yii::$app->name, 'height' => 60]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -43,7 +43,7 @@ AppAsset::register($this);
             [['label' => 'Login', 'url' => ['/site/login']]]
             ) : (
             [
-                ['label' => 'Profile', 'url' => ['/user/profile/', 'hash' => Yii::$app->user->identity->url_hash]],
+                ['label' => 'Profile', 'url' => ['/user/profile/', 'hash' => Yii::$app->user->identity->getId()]],
                 ['label' => 'Submit Mood', 'url' => ['/submit']],
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
