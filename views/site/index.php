@@ -2,16 +2,16 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = Yii::t('app', 'Pika-mood');
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1><img src="https://fontmeme.com/permalink/180711/1cc45d88f009f7037b99cfe5aebed1ee.png" alt="Pika-mood" border="0"></h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">Show your current mood through the medium of gifs.</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p><a class="btn btn-lg btn-success" href="<?php echo \yii\helpers\Url::to('site/login'); ?>">Get started!</a></p>
     </div>
 
     <div class="body-content">

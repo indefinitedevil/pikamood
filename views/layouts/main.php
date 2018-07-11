@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -37,13 +38,13 @@ AppAsset::register($this);
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+        'items' =>
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+            [['label' => 'Login', 'url' => ['/site/login']]]
             ) : (
+            [
+                ['label' => 'Profile', 'url' => ['/user/profile/', 'hash' => Yii::$app->user->identity->url_hash]],
+                ['label' => 'Submit Mood', 'url' => ['/submit']],
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
@@ -52,8 +53,8 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            )
-        ],
+            ]
+            ),
     ]);
     NavBar::end();
     ?>
@@ -69,9 +70,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">Code &copy; Moltis <?= date('Y') ?>. Gif content copyright the original owners.</p>
     </div>
 </footer>
 
