@@ -26,6 +26,10 @@ $this->title = $model->username;
                         'method' => 'post',
                     ],
                 ]) ?>
+                <?= Html::a(Yii::t('app', 'Share on Facebook'),
+                    'https://www.facebook.com/sharer/sharer.php?u=' . urlencode(\yii\helpers\Url::to(['/user/profile', 'hash' => $model->url_hash], 'https')),
+                    ['class' => 'btn btn-success']
+                ) ?>
             </p>
         <?php endif; ?>
     <?php endif; ?>
