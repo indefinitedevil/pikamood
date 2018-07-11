@@ -11,7 +11,11 @@ $this->title = Yii::t('app', 'Home');
 
         <p class="lead">Show your current mood through the medium of gifs.</p>
 
-        <p><a class="btn btn-lg btn-success" href="<?php echo \yii\helpers\Url::to('site/login'); ?>">Get started!</a></p>
+        <?php if (Yii::$app->user->isGuest): ?>
+        <p><a class="btn btn-lg btn-success" href="<?php echo \yii\helpers\Url::to(['/login']); ?>">Get started!</a></p>
+        <?php else: ?>
+        <p><a class="btn btn-lg btn-success" href="<?php echo \yii\helpers\Url::to(['/user/profile', 'hash' => Yii::$app->user->identity->url_hash]); ?>">Check your profile!</a></p>
+        <?php endif; ?>
     </div>
 <?php /*
     <div class="body-content">
