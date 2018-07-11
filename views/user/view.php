@@ -37,4 +37,8 @@ $this->title = $model->username;
     <p><?php echo \app\models\Mood::findOne($model->mood_id)->getMoodImage(500); ?></p>
     <small><?php printf(Yii::t('app', 'Last updated: %s'), $model->updated_at); ?></small>
 
+    <?php if (\Yii::$app->user->isGuest): ?>
+    <hr>
+    <p>Want your own Pika-mood profile? <a class="btn btn-lg btn-success" href="<?php echo \yii\helpers\Url::to('site/login'); ?>">Get started!</a></p>
+    <?php endif; ?>
 </div>
