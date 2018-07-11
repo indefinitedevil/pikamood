@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'approved')->dropDownList([0 => 'No', 1 => 'Yes'], ['value' => $model->approved]) ?>
     <?php else: ?>
         <?= Html::activeHiddenInput($model, 'user_id', ['value' => $user->getId()]) ?>
-        <?= Html::activeHiddenInput($model, 'approved', 0) ?>
+        <?= Html::activeHiddenInput($model, 'approved', ['value' => 0]) ?>
     <?php endif; ?>
 
     <div class="form-group">
