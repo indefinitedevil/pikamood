@@ -76,3 +76,9 @@ $this->title = $model->username;
         ?>
     <?php endif; ?>
 </div>
+<meta property="og:url"
+      content="<?php echo \yii\helpers\Url::to(['/user/profile', 'hash' => $model->url_hash], 'https'); ?>"/>
+<meta property="og:type" content="profile"/>
+<meta property="og:title" content="<?php echo $model->username; ?>"/>
+<meta property="og:description" content="Expressing mood through Pika-gifs"/>
+<meta property="og:image" content="<?php echo $model->getMood()->mood_gif; ?>"/>
