@@ -63,7 +63,7 @@ $this->title = $model->username;
                 <?php /** @var \app\models\User $followUser */
                 $followUser = $follow->getFollow(); ?>
                 <div class="follow">
-                    <a href="<?php echo \yii\helpers\Url::to(['/profile', 'hash' => $followUser->url_hash]); ?>">
+                    <a href="<?php echo \yii\helpers\Url::to(['/user/profile', 'hash' => $followUser->url_hash]); ?>">
                         <span><?php echo $followUser->username; ?></span>
                         <?php echo $followUser->getMood()->getMoodImage(100, false); ?>
                     </a>
