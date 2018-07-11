@@ -43,7 +43,7 @@ AppAsset::register($this);
             [['label' => 'Login', 'url' => ['/site/login']]]
             ) : (
             [
-                ['label' => 'Profile', 'url' => ['/user/profile/', 'hash' => Yii::$app->user->identity->getId()]],
+                ['label' => 'Profile', 'url' => ['/user/profile/', 'hash' => Yii::$app->user->identity->url_hash]],
                 ['label' => 'Submit Mood', 'url' => ['/submit']],
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
