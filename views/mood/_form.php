@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'contributor')->textInput(['maxlength' => true, 'value' => $model->contributor]) ?>
         <?= $form->field($model, 'approved')->dropDownList([0 => 'No', 1 => 'Yes'], ['value' => $model->approved]) ?>
     <?php else: ?>
-        <?= Html::activeHiddenInput($model, 'user_id', ['value' => $user->getId()]) ?>
+        <?= Html::activeHiddenInput($model, 'contributor', ['value' => $user->getId()]) ?>
         <?= Html::activeHiddenInput($model, 'approved', ['value' => 0]) ?>
     <?php endif; ?>
 
