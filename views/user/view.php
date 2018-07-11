@@ -9,6 +9,12 @@ use yii\widgets\DetailView;
 $this->title = $model->username;
 //$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;
+
+$this->registerMetaTag(['property' =>'og:url', 'content' => \yii\helpers\Url::to(['/user/profile', 'hash' => $model->url_hash], 'https')]);
+$this->registerMetaTag(['property' =>'og:type', 'content' => 'profile']);
+$this->registerMetaTag(['property' =>'og:title', 'content' => $model->username]);
+$this->registerMetaTag(['property' =>'og:description', 'content' => 'Expressing mood through Pika-gifs']);
+$this->registerMetaTag(['property' =>'og:image', 'content' => $model->getMood()->mood_gif]);
 ?>
 <div class="user-view">
 
@@ -76,9 +82,3 @@ $this->title = $model->username;
         ?>
     <?php endif; ?>
 </div>
-<meta property="og:url"
-      content="<?php echo \yii\helpers\Url::to(['/user/profile', 'hash' => $model->url_hash], 'https'); ?>"/>
-<meta property="og:type" content="profile"/>
-<meta property="og:title" content="<?php echo $model->username; ?>"/>
-<meta property="og:description" content="Expressing mood through Pika-gifs"/>
-<meta property="og:image" content="<?php echo $model->getMood()->mood_gif; ?>"/>
