@@ -41,4 +41,8 @@ class Follow extends \yii\db\ActiveRecord {
     public function getUser() {
         return $this->hasOne(User::className(), ['user_id' => 'user_id'])->one();
     }
+
+    public function getFollow() {
+        return $this->hasOne(User::className(), ['user_id' => 'follow_id'])->one();
+    }
 }

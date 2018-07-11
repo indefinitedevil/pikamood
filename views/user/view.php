@@ -26,12 +26,13 @@ $this->title = $model->username;
                         'method' => 'post',
                     ],
                 ]) ?>
+            <?php endif ?>
+            <?php if ($user->getId() == $model->user_id) : ?>
                 <?= Html::a(Yii::t('app', 'Share on Facebook'),
                     'https://www.facebook.com/sharer/sharer.php?u=' . urlencode(\yii\helpers\Url::to(['/user/profile', 'hash' => $model->url_hash], 'https')),
                     ['class' => 'btn btn-success']
                 ) ?>
-            <?php endif; ?>
-            <?php if ($user->getId() != $model->user_id): ?>
+            <?php else: ?>
                 <?php if ($user->isFollowing($model->user_id)): ?>
                     <?= Html::a(Yii::t('app', 'Unfollow'), ['unfollow', 'id' => $model->user_id], ['class' => 'btn btn-danger']) ?>
                 <?php else: ?>
@@ -60,7 +61,7 @@ $this->title = $model->username;
             ?>
             <?php foreach ($following as $follow): ?>
                 <?php /** @var \app\models\User $followUser */
-                $followUser = $follow->getUser(); ?>
+                $followUser = $follow->getFollow(); ?>
                 <div class="follow">
                     <a href="<?php echo \yii\helpers\Url::to(['/profile', 'hash' => $followUser->url_hash]); ?>">
                         <span><?php echo $followUser->username; ?></span>
