@@ -13,7 +13,7 @@ $this->title = Yii::t('app', 'Pika-mood');
 
         <p><a class="btn btn-lg btn-success" href="<?php echo \yii\helpers\Url::to('site/login'); ?>">Get started!</a></p>
     </div>
-
+<?php /*
     <div class="body-content">
 
         <div class="row">
@@ -50,4 +50,5 @@ $this->title = Yii::t('app', 'Pika-mood');
         </div>
 
     </div>
+ */ ?>
 </div>
