@@ -118,8 +118,17 @@ class UserController extends Controller {
             return $this->goHome();
         }
         $user = $this->findModel($id);
-        $user->getAuth()->one()->delete();
-        $user->delete();
+        try {
+            try {
+                $user->getAuth()->one()->delete();
+            } catch (\Exception $e) {
+            }
+            try {
+                $user->delete();
+            } catch (\Exception $e) {
+            }
+        } catch (\Exception $e) {
+        }
         if ($user->getId() == $id) {
             Yii::$app->user->logout();
             return $this->redirect(['/site/login']);
