@@ -56,10 +56,10 @@ class Mood extends \yii\db\ActiveRecord {
         return $list;
     }
 
-    public function getMoodImage($width = 150) {
+    public function getMoodImage($width = 150, $showContributor = true) {
         $img = '<img src="' . $this->mood_gif . '" alt="' . $this->mood_name . '" width="' . $width . '"/>';
         $user = $this->getUser();
-        if ($user !== null) {
+        if ($user !== null && $showContributor) {
             $img .= '<br><small>Contributed by <a href="' . \yii\helpers\Url::to(['/user/profile', 'hash' => $user->url_hash]) . '">' . $user->username . '</a></small>';
         }
         return $img;

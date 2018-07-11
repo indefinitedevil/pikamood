@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Auth;
+use app\models\Follow;
 use Yii;
 use app\models\User;
 use yii\data\ActiveDataProvider;
@@ -56,9 +57,8 @@ class UserController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id) {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        $model = $this->findModel($id);
+        return $this->redirect(['profile', 'hash' => $model->url_hash]);
     }
 
     /**
@@ -94,12 +94,52 @@ class UserController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->user_id]);
+            return $this->redirect(['profile', 'hash' => $model->url_hash]);
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Updates an existing User model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param string $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionFollow($id) {
+        if (\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $user = \Yii::$app->user->identity;
+        $model = $this->findModel($id);
+
+        $follow = new Follow([
+            'user_id' => $user->getId(),
+            'follow_id' => $model->getId(),
+        ]);
+        $follow->save();
+
+        return $this->redirect(['profile', 'hash' => $model->url_hash]);
+    }
+    public function actionUnfollow($id) {
+        if (\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $user = \Yii::$app->user->identity;
+        $model = $this->findModel($id);
+
+        $follow = Follow::findOne([
+            'user_id' => $user->getId(),
+            'follow_id' => $id,
+        ]);
+        if ($follow) {
+            $follow->delete();
+        }
+
+        return $this->redirect(['profile', 'hash' => $model->url_hash]);
     }
 
     /**

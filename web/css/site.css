@@ -113,3 +113,20 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.follow {
+    margin: 0 0.5em 1em;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+.follow span {
+    display: block;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #ffcc03;
+    background-color: rgba(42, 117, 187, 0.99);
+}

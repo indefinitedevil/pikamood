@@ -36,7 +36,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
             [['mood_id', 'admin'], 'integer'],
             [['updated_at'], 'safe'],
             [['username'], 'string', 'max' => 32],
-            [['username'], 'unique'],
         ];
     }
 
@@ -92,5 +91,21 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 
     public function isAdmin() {
         return true == $this->admin;
+    }
+
+    public function getFollows() {
+        return $this->hasMany(Follow::className(), ['user_id' => 'user_id']);
+    }
+
+    public function isFollowing($id) {
+        $follows = $this->getFollows()->andWhere(['follow_id' => $id]);
+        return $follows->count() > 0;
+    }
+
+    /**
+     * @return Mood
+     */
+    public function getMood() {
+        return $this->hasOne(Mood::className(), ['mood_id' => 'mood_id'])->one();
     }
 }
