@@ -31,7 +31,7 @@ class AuthHandler {
                 $id = 'bar';
                 break;
             case 'google':
-                $nickname = ArrayHelper::getValue($attributes, 'display_name');
+                $nickname = ArrayHelper::getValue($attributes, 'displayName');
                 $id = ArrayHelper::getValue($attributes, 'id');
                 break;
         }

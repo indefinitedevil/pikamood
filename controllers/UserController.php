@@ -117,19 +117,19 @@ class UserController extends Controller {
         if (!$user->isAdmin() && $user->getId() != $id) {
             return $this->goHome();
         }
-        $user = $this->findModel($id);
+        $deleteUser = $this->findModel($id);
         try {
             try {
-                $user->getAuth()->one()->delete();
+                $deleteUser->getAuth()->one()->delete();
             } catch (\Exception $e) {
             }
             try {
-                $user->delete();
+                $deleteUser->delete();
             } catch (\Exception $e) {
             }
         } catch (\Exception $e) {
         }
-        if ($user->getId() == $id) {
+        if ($deleteUser->getId() == $id) {
             Yii::$app->user->logout();
             return $this->redirect(['/site/login']);
         }
