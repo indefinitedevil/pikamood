@@ -42,18 +42,24 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ? (
             [['label' => 'Login', 'url' => ['/site/login']]]
             ) : (
-            [
-                ['label' => 'Profile', 'url' => ['/user/profile/', 'hash' => Yii::$app->user->identity->url_hash]],
-                ['label' => 'Submit Mood', 'url' => ['/submit']],
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            ]
+            array_merge(
+                Yii::$app->user->identity->isAdmin() ? [
+                    ['label' => 'Users', 'url' => ['/user']],
+                    ['label' => 'Moods', 'url' => ['/mood']],
+                ] : [],
+                [
+                    ['label' => 'Profile', 'url' => ['/user/profile/', 'hash' => Yii::$app->user->identity->url_hash]],
+                    ['label' => 'Submit Mood', 'url' => ['/submit']],
+                    '<li>'
+                    . Html::beginForm(['/site/logout'], 'post')
+                    . Html::submitButton(
+                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link logout']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+                ]
+            )
             ),
     ]);
     NavBar::end();

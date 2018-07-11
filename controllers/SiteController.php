@@ -62,6 +62,9 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionIndex() {
+        if (!Yii::$app->user->isGuest) {
+            return $this->redirect(['/user/profile', 'hash' => Yii::$app->user->identity->url_hash]);
+        }
         return $this->render('index');
     }
 
