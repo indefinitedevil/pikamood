@@ -48,6 +48,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'login' => 'site/login',
                 'submit' => 'mood/create',
                 'profile/<hash>' => 'user/profile',
             ],

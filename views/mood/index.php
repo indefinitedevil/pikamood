@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -24,10 +25,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'mood_name',
-            'mood_gif',
             [
-                    'label' => 'Contributor',
-                'value' => function($model) {
+                'label' => 'Gif',
+                'value' => function ($model) {
+                    return $model->getMoodImage(100, false);
+                },
+                'format' => 'html',
+            ],
+            [
+                'label' => 'Contributor',
+                'value' => function ($model) {
                     $user = $model->getUser();
                     if ($user !== null) {
                         return '<a href="' . \yii\helpers\Url::to(['/user/profile', 'hash' => $user->url_hash]) . '">' . $user->username . '</a>';
@@ -36,6 +43,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format' => 'html',
             ],
+            [
+                'label' => 'Approved',
+                'value' => function ($model) {
+                    return Yii::t('app', $model->approved ? 'Yes' : 'No');
+                },
+                'format' => 'html',
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
