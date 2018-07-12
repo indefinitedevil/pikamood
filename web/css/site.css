@@ -121,6 +121,7 @@ a.desc:after {
     width: 100px;
     height: 100px;
     position: relative;
+    display: inline-block;
 }
 .follow span {
     display: block;
