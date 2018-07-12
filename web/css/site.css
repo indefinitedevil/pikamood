@@ -131,3 +131,8 @@ a.desc:after {
     color: #ffcc03;
     background-color: rgba(42, 117, 187, 0.99);
 }
+@media(max-width:767px) {
+    .navbar-brand > img {
+        max-height: 30px;
+    }
+}
